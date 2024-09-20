@@ -4,9 +4,19 @@ project(opengl)
 
 set(CMAKE_CXX_STANDARD 20)
 
-if(WIN32)
+if (WIN32)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd") # 设置运行时库为 MDd
-endif()
+endif ()
+
+if (CMAKE_BUILD_TYPE MATCHES "Debug")
+    set(OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/debug/bin)
+elseif (CMAKE_BUILD_TYPE MATCHES "Release")
+    set(OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/release/bin)
+endif ()
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_PATH})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_PATH})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_PATH})
 
 # 依赖源文件
 file(GLOB IMGUI_SOURCE dependencies/imgui/*.cpp)

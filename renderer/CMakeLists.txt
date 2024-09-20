@@ -1,10 +1,12 @@
 project(renderer)
 
-file(GLOB_RECURSE SOURCE src/**.cpp)
+file(GLOB_RECURSE CODE_HEADER src/**.h)
+file(GLOB_RECURSE CODE_SOURCE src/**.cpp)
 
 add_library(${PROJECT_NAME}
     ${GLAD_SOURCE}
     ${STB_SOURCE}
 
-    ${SOURCE}
+    ${CODE_HEADER}
+    ${CODE_SOURCE}
 )
